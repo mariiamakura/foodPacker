@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Import the base Tailwind CSS styles */
+@import 'tailwindcss/base';
+
+/* Import the component Tailwind CSS styles */
+@import 'tailwindcss/components';
+
+/* Import the utility Tailwind CSS styles */
+@import 'tailwindcss/utilities';
+
+/* Additional custom styles */
+/* Place your additional custom styles below */

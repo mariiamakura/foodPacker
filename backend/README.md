@@ -5,7 +5,7 @@
 
 ## Build and run the projects
 
-Before building add .env file to the root of this folder:
+Before building add `.env` file to the root of this folder:
 ```
 MYSQL_HOST_LOCAL=your_host
 MYSQL_PORT=your_port

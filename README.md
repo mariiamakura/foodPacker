@@ -19,4 +19,4 @@ This application leverages modern technologies to provide a comprehensive food o
 - **Database**: MySQL
 - **Payment Processing**: Stripe
 
-AS for now the backend is runnable, you can test it following the instructions [here](https://github.com/mariiamakura/foodPacker/tree/main/foodyApp)
+AS for now the backend is runnable, you can test it following the instructions [here](https://github.com/mariiamakura/foodPacker/tree/main/backend)

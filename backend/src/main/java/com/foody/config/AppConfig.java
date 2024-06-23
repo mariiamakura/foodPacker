@@ -18,9 +18,25 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * Configuration class for setting up security configurations in the application.
+ */
 @Configuration
 @EnableWebSecurity
 public class AppConfig {
+    /**
+     * Configures the security filter chain.
+     *
+     * - Stateless session management.
+     * - Authorization rules for API endpoints.
+     * - Adds JWT token validation filter.
+     * - Disables CSRF protection.
+     * - Configures CORS settings.
+     *
+     * @param http the HttpSecurity to modify
+     * @return the SecurityFilterChain
+     * @throws Exception if an error occurs
+     */
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -34,6 +50,17 @@ public class AppConfig {
         return http.build();
     }
 
+    /**
+     * Configures the CORS settings.
+     *
+     * - Allows specific origins.
+     * - Allows all HTTP methods and headers.
+     * - Supports credentials.
+     * - Exposes the "Authorization" header.
+     * - Sets the max age for CORS preflight requests to 3600 seconds.
+     *
+     * @return the CORS configuration source
+     */
     private CorsConfigurationSource corsConfigurationSource() {
         return new CorsConfigurationSource() {
             @Override

@@ -35,6 +35,15 @@ public class OrderServiceImp implements OrderService {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
+    /**
+     * Creates a new order based on the order request and associates it with the user.
+     * Saves the order items from the user's cart and calculates the total price.
+     *
+     * @param order The order request containing order details
+     * @param user  The user placing the order
+     * @return The created Order object
+     * @throws Exception If there are issues with saving addresses, finding restaurants, or calculating totals
+     */
     @Override
     public Order createOrder(OrderRequest order, User user) throws Exception {
         Address shippingAddress = order.getDeliveryAddress();
@@ -76,6 +85,14 @@ public class OrderServiceImp implements OrderService {
         return createdOrder;
     }
 
+    /**
+     * Updates the status of an order identified by orderId to the specified orderStatus.
+     *
+     * @param orderId     The ID of the order to update
+     * @param orderStatus The new status of the order
+     * @return The updated Order object
+     * @throws Exception If the order with the given ID doesn't exist or the orderStatus is invalid
+     */
     @Override
     public Order updateOrder(Long orderId, String orderStatus) throws Exception {
         Order order = findOrderById(orderId);
@@ -89,18 +106,40 @@ public class OrderServiceImp implements OrderService {
         throw new Exception("Please select valid order status");
     }
 
+    /**
+     * Cancels an order identified by orderId.
+     *
+     * @param orderId The ID of the order to cancel
+     * @throws Exception If the order with the given ID doesn't exist
+     */
     @Override
     public void cancelOrder(Long orderId) throws Exception {
         Order order = findOrderById(orderId);
         orderRepository.deleteById(orderId);
     }
 
+    /**
+     * Retrieves all orders placed by a specific user identified by userId.
+     *
+     * @param userId The ID of the user whose orders to retrieve
+     * @return List of orders placed by the user
+     * @throws Exception If the user with the given ID doesn't exist
+     */
     @Override
     public List<Order> getUserOrder(Long userId) throws Exception {
 
         return orderRepository.findByCustomerId(userId);
     }
 
+    /**
+     * Retrieves all orders received by a specific restaurant identified by restaurantId.
+     * Optionally filters by order status.
+     *
+     * @param restaurantId The ID of the restaurant whose orders to retrieve
+     * @param orderStatus  Optional status to filter orders (can be null)
+     * @return List of orders received by the restaurant
+     * @throws Exception If the restaurant with the given ID doesn't exist
+     */
     @Override
     public List<Order> getRestaurantOrder(Long restaurantId, String orderStatus) throws Exception {
         List<Order> orders = orderRepository.findByRestaurantId(restaurantId);
@@ -110,6 +149,13 @@ public class OrderServiceImp implements OrderService {
         return orders;
     }
 
+    /**
+     * Finds an order by its ID.
+     *
+     * @param orderId The ID of the order to find
+     * @return The found Order object
+     * @throws Exception If the order with the given ID doesn't exist
+     */
     @Override
     public Order findOrderById(Long orderId) throws Exception {
         Optional<Order> optOrder = orderRepository.findById(orderId);

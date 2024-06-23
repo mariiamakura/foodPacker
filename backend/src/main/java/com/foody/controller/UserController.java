@@ -17,6 +17,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Endpoint to retrieve user profile by JWT token.
+     *
+     * @param jwt the JWT token from the authorization header
+     * @return ResponseEntity containing the user profile and HTTP status
+     * @throws Exception if an error occurs while fetching the user profile
+     */
     @GetMapping("/profile")
     public ResponseEntity<User> findByUsername(@RequestHeader("Authorization") String jwt) throws Exception {
         User user = userService.findUserByJwtToken(jwt);

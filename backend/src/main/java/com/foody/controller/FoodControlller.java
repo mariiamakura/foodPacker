@@ -27,6 +27,14 @@ public class FoodControlller {
     @Autowired
     private RestaurantService restaurantService;
 
+    /**
+     * Endpoint to search for foods by name.
+     *
+     * @param name the name of the food to search for
+     * @param jwt the JWT token from the authorization header
+     * @return ResponseEntity containing a list of found foods and HTTP status
+     * @throws Exception if an error occurs during food search
+     */
     @GetMapping("/search")
     public ResponseEntity<List<Food>> searchFood(@RequestParam String name,
                                             @RequestHeader("Authorization") String jwt) throws Exception {
@@ -36,6 +44,18 @@ public class FoodControlller {
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint to retrieve foods of a specific restaurant based on filters.
+     *
+     * @param vegetarian filter for vegetarian food (true/false)
+     * @param seasonal filter for seasonal food (true/false)
+     * @param nonVeg filter for non-vegetarian food (true/false)
+     * @param restaurantId the ID of the restaurant to fetch foods from
+     * @param foodCategory optional category filter for food
+     * @param jwt the JWT token from the authorization header
+     * @return ResponseEntity containing a list of filtered foods and HTTP status
+     * @throws Exception if an error occurs while fetching restaurant foods
+     */
     @GetMapping("/reastaurant/{restaurantId}")
     public ResponseEntity<List<Food>> getReastaurantFood(@RequestParam boolean vegetarian,
                                                     @RequestParam boolean seasonal,

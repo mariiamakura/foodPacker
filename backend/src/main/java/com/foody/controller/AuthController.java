@@ -41,6 +41,13 @@ public class AuthController {
     @Autowired
     private CartRepository cartRepository;
 
+    /**
+     * Endpoint to handle user registration.
+     *
+     * @param user the user object containing registration details
+     * @return ResponseEntity containing authentication response and HTTP status
+     * @throws Exception if email is already registered or an error occurs during registration
+     */
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws Exception {
         User isEmailExist = userRepository.findByEmail(user.getEmail());
@@ -69,6 +76,13 @@ public class AuthController {
         return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
     }
 
+    /**
+     * Endpoint to handle user login.
+     *
+     * @param req the login request containing email and password
+     * @return ResponseEntity containing authentication response and HTTP status
+     * @throws Exception if login credentials are invalid or an error occurs during login
+     */
     @PostMapping("/signin")
     public ResponseEntity<AuthResponse> signIn(@RequestBody LoginRequest req) throws Exception {
         String username = req.getEmail();
@@ -88,6 +102,14 @@ public class AuthController {
         return new ResponseEntity<>(authResponse, HttpStatus.OK);
     }
 
+    /**
+     * Authenticates the user with the provided username and password.
+     *
+     * @param username the username (email) of the user
+     * @param password the password of the user
+     * @return an Authentication object if authentication is successful
+     * @throws BadCredentialsException if authentication fails due to invalid credentials
+     */
     private Authentication authenticate(String username, String password) {
         UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
 

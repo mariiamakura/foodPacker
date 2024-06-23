@@ -26,6 +26,14 @@ public class AdminFoodController {
     @Autowired
     private RestaurantService restaurantService;
 
+    /**
+     * Endpoint to create a new food item.
+     *
+     * @param req the request body containing food details
+     * @param jwt the JWT token from the authorization header
+     * @return ResponseEntity containing the created food item and HTTP status
+     * @throws Exception if an error occurs during food creation
+     */
     @PostMapping
     public ResponseEntity<Food> createFood(@RequestBody CreateFoodRequest req,
                                            @RequestHeader("Authorization") String jwt) throws Exception {
@@ -35,6 +43,14 @@ public class AdminFoodController {
         return new ResponseEntity<>(food, HttpStatus.CREATED);
     }
 
+    /**
+     * Endpoint to delete a food item by ID.
+     *
+     * @param id the ID of the food item to delete
+     * @param jwt the JWT token from the authorization header
+     * @return ResponseEntity containing a message and HTTP status
+     * @throws Exception if an error occurs during food deletion
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<MessageResponse> deleteFood(@PathVariable Long id,
                                                       @RequestHeader("Authorization") String jwt) throws Exception {
@@ -45,6 +61,14 @@ public class AdminFoodController {
         return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint to update the availability status of a food item by ID.
+     *
+     * @param id the ID of the food item to update
+     * @param jwt the JWT token from the authorization header
+     * @return ResponseEntity containing the updated food item and HTTP status
+     * @throws Exception if an error occurs during food status update
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Food> updateFoodAvailabilityStatus(@PathVariable Long id,
                                                       @RequestHeader("Authorization") String jwt) throws Exception {

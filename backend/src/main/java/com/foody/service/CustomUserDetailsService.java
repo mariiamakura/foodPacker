@@ -14,13 +14,23 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-// to set up our custom password
+/**
+ * Custom implementation of Spring Security's UserDetailsService.
+ * This service loads user-specific data used by the authentication system.
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Load user details by username (in this case, by email).
+     *
+     * @param username The email address of the user to load
+     * @return UserDetails object containing user information
+     * @throws UsernameNotFoundException if the user with the given username (email) is not found
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username);

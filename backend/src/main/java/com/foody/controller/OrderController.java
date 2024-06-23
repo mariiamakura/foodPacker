@@ -23,6 +23,14 @@ public class OrderController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Endpoint to create a new order.
+     *
+     * @param req the request body containing the order details
+     * @param jwt the JWT token from the authorization header
+     * @return ResponseEntity containing the created order and HTTP status
+     * @throws Exception if an error occurs during order creation
+     */
     @PostMapping("/order")
     public ResponseEntity<Order> createOrder(@RequestBody OrderRequest req,
                                                    @RequestHeader("Authorization") String jwt) throws Exception {
@@ -31,6 +39,13 @@ public class OrderController {
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
 
+    /**
+     * Endpoint to retrieve order history for a user.
+     *
+     * @param jwt the JWT token from the authorization header
+     * @return ResponseEntity containing a list of user's orders and HTTP status
+     * @throws Exception if an error occurs while fetching order history
+     */
     @GetMapping("/order/user")
     public ResponseEntity<List<Order>> getOrderHistory(@RequestHeader("Authorization") String jwt) throws Exception {
         User user = userService.findUserByJwtToken(jwt);

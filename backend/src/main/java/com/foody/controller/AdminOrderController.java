@@ -16,6 +16,14 @@ public class AdminOrderController {
     @Autowired
     private OrderService orderService;
 
+    /**
+     * Retrieves the order history for a specific restaurant.
+     *
+     * @param id the ID of the restaurant
+     * @param orderStatus optional parameter to filter orders by status
+     * @return ResponseEntity containing a list of orders and HTTP status
+     * @throws Exception if an error occurs while fetching orders
+     */
     @GetMapping("/order/restaurant/{id}")
     public ResponseEntity<List<Order>> getOrderHistory(
             @PathVariable Long id,
@@ -24,6 +32,14 @@ public class AdminOrderController {
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
+    /**
+     * Updates the status of a specific order.
+     *
+     * @param id the ID of the order to update
+     * @param orderStatus the new status to set for the order
+     * @return ResponseEntity containing the updated order and HTTP status
+     * @throws Exception if an error occurs while updating the order status
+     */
     @PutMapping("/order/{id}/{orderStatus}")
     public ResponseEntity<Order> updateOrderStatus(
             @PathVariable Long id,

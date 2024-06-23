@@ -12,6 +12,7 @@ MYSQL_PORT=your_port
 MYSQL_DATABASE=your_database
 MYSQL_USERNAME=your_username
 MYSQL_PASSWORD=your_password
+SECRET_KEY=your_secret_key //to encrypt jwt
 ```
 
 Build:

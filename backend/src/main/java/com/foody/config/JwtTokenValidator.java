@@ -21,7 +21,9 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
-
+/**
+ * Filter class to validate and process JWT tokens from incoming requests.
+ */
 public class JwtTokenValidator extends OncePerRequestFilter {
 
     @Override

@@ -6,8 +6,11 @@ import lombok.Data;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Data Transfer Object (DTO) representing restaurant details.
+ * This class is embedded within other entities' tables and does not have its own table.
+ */
 @Data
-//this class wont have a separate table but will be included in other entities tables
 @Embeddable
 public class RestaurantDto {
 
